@@ -2,9 +2,21 @@ export type PriceHistoryItem = {
     price: number;
   };
   
+export type LogHistory = {
+  data: string,
+  date: Date
+}
   export type User = {
     email: string;
+    username: string;
+    password: string;
+    repassword: string;
+    logHistory: LogHistory[] | [];
   };
+  export type loginUser = {
+    email: string;
+    password: string;
+  }
   
   export type Product = {
     _id?: string;
@@ -42,3 +54,4 @@ export type PriceHistoryItem = {
     title: string;
     url: string;
   };
+

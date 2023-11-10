@@ -50,6 +50,12 @@ npm install --save-dev @types/nodemailer
 
 npm install supports-color@8.1.1
 
+npm install react-icons --save
+
+npm i --save-dev @types/bcrypt
+
+npm install date-fns
+
 https://brightdata.com/
 
 https://account.mongodb.com/

@@ -1,3 +1,4 @@
+
 import Image from 'next/image'
 import Searchbar from '@/components/Searchbar'
 import HeroCarousel from '@/components/HeroCarousel'
@@ -7,7 +8,7 @@ import {getAllProducts} from '@/lib/actions'
 async function Home() {
 
   const allProducts = await getAllProducts();
-
+ 
   return (
     <>
       <section className="px-6 md:px-20 py-24">
@@ -38,6 +39,8 @@ async function Home() {
               <HeroCarousel />
         </div>
       </section>
+
+     
 
         <section className="trending-section">
           <h2 className="section-text">Trending</h2>

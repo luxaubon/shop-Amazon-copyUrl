@@ -6,17 +6,24 @@ import PriceInfoCard from "@/components/PriceInfoCard";
 import ProductCard from "@/components/ProductCard";
 import Modal from "@/components/Modal";
 
-import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+
+import Like from "@/components/Like";
+import Comment from "@/components/Comment";
+import ListComment from "@/components/ListComment";
+
 
 type Props = {
   params : { id: string }
 }
 async function ProductDetails({ params : {id} }: Props) {
+
   const product = await getProductById(id);
   if (!product) redirect("/");
   const similarProducts = await getSimilarProducts(id);
+
+
   return (
     <div className="product-container">
       <div className="flex gap-28 xl:flex-row flex-col">
@@ -61,12 +68,7 @@ async function ProductDetails({ params : {id} }: Props) {
               </div>
 
               <div className="p-2 bg-white-200 rounded-10">
-                <Image 
-                  src="/assets/icons/bookmark.svg"
-                  alt="bookmark"
-                  width={20}
-                  height={20}
-                />
+                  <Like  uid={id}/>
               </div>
 
               <div className="p-2 bg-white-200 rounded-10">
@@ -150,6 +152,8 @@ async function ProductDetails({ params : {id} }: Props) {
           </div>
 
           <Modal productId={id} />
+
+
         </div>
       </div>
 
@@ -176,6 +180,14 @@ async function ProductDetails({ params : {id} }: Props) {
             Buy Now
           </Link>
         </button>
+
+      </div>
+
+      <div className="flex flex-col gap-16">
+        <Comment pid={id}/>
+      </div>
+      <div className="flex flex-col gap-16">
+        <ListComment pid={id}/>
       </div>
 
       {similarProducts && similarProducts?.length > 0 && (

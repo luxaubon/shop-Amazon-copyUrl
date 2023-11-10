@@ -1,7 +1,11 @@
 "use server"
+
 import { revalidatePath } from "next/cache";
 import {scrapeAmazonProduct} from "../scraper/";
+
 import Product from "@/lib/models/product.model";
+import Users from "@/lib/models/user.model";
+
 import {connectToDB} from "@/lib/mongoose";
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 import { User } from "@/types";
@@ -118,4 +122,56 @@ export async function getProductById(productId: string) {
     }
 
   }
+export async function checkFavorite(uid : string, email: string){
+    try{
+      connectToDB();
+      const member = await Users.findOne({ email: email });
+      if(!member) return;
+      const plainObject = JSON.parse(JSON.stringify(member));
+      return plainObject;
+    }catch(err){
+      throw new Error(`error checking favorite DATA HERE: ${err}`);
+    }
+}
+export async function checkLikeStatus(uid:string, email: string){
+  try{
+
+    connectToDB();
+    const member = await Users.findOne({ email: email });
+
+    if(!member) return;
+    
+    if(member){
+        const plainObject = JSON.parse(JSON.stringify(member));
+
+        const favoritelog = plainObject.favoritelog;
+        const hasLog = favoritelog.includes(uid);
+        if(hasLog){
+          const updatedFavoritelog = favoritelog.filter((item:string) => item !== uid);
+          
+          const profiles = await Users.updateOne(
+            { email: email },
+            { $set: { favoritelog: updatedFavoritelog } }
+          );
+          return profiles;
+          
+        }else{
+          const updatedFavoriteHistory = [
+              ...plainObject.favoritelog,uid
+          ];
+
+          const profiles = await Users.updateOne(
+            { email: email },
+            { $set: { favoritelog: updatedFavoriteHistory } }
+          );
+          return profiles;
+        }
+
+    }
+
+  }catch(err){
+    throw new Error(`error adding favorite DATA HERE: ${err}`);
+  }
+
+}
   

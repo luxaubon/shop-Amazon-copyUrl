@@ -1,6 +1,7 @@
 "use client";
 import { FormEvent, useState } from "react"
 import {scrapeAndStoreProduct} from '@/lib/actions';
+
 const isValidAmazonProductURL = (url: string) => {
   try {
     const parsedURL = new URL(url);

@@ -1,8 +1,6 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
 import { extractDescription,extractCurrency,extractPrice } from '../utils';
-import { json } from "stream/consumers";
-
 
 export async function scrapeAmazonProduct(url: string) {
     if(!url) return;
