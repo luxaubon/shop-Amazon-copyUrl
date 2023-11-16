@@ -55,3 +55,11 @@ export type LogHistory = {
     url: string;
   };
 
+  export type Content = {
+    id: string;
+    name: string;
+    detail: string;
+    coverimage: string;
+    latitude: number;
+    longitude: number;
+  }

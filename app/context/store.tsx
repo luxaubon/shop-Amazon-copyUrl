@@ -2,12 +2,6 @@
 
 import { createContext,useContext,Dispatch,SetStateAction,useState } from "react";
 
-type DataTyoe = {
-    uid: string,
-    title: string,
-    detail: string
-}
-
 interface ContextProps {
     uid: string,
     setUid: Dispatch<SetStateAction<string>>,

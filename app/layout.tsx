@@ -1,10 +1,13 @@
-import Navbar from '@/components/Navbar'
+
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter, Space_Grotesk } from 'next/font/google'
-import Providers from "./Providers";
+
+import Providers from "./context/Providers";
 import { GlobalContextProvider } from "./context/store";
 
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 const spaceGrotesk = Space_Grotesk({ 
@@ -31,6 +34,7 @@ export default function RootLayout({
               <GlobalContextProvider>
                 <Navbar />
                 {children}
+                <Footer  />
               </GlobalContextProvider>
             </Providers>
           </main>

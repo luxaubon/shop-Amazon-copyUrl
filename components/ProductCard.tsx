@@ -13,9 +13,9 @@ function ProductCard({ product }: Props) {
         <Image 
           src={product.image}
           alt={product.title}
+          className="product-card_img"
           width={200}
           height={200}
-          className="product-card_img"
         />
       </div>
 
