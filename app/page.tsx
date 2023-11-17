@@ -1,13 +1,36 @@
+"use client"
 
+import { useState,useEffect } from "react";
 import Image from 'next/image'
 import Searchbar from '@/components/Searchbar'
 import HeroCarousel from '@/components/HeroCarousel'
 import ProductCard from '@/components/ProductCard'
 import {getAllProducts} from '@/lib/actions'
 
-async function Home() {
+import { useGlobalContext } from "@/app/context/store";
 
-  const allProducts = await getAllProducts();
+import {Product} from '@/types/'
+
+
+function Home() {
+
+  const {search,setSearch} = useGlobalContext();
+
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+      const fetchProduct = async () => {
+        try {
+          const listData: any = await getAllProducts(search);
+          setAllProducts(listData);
+          console.log(listData);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchProduct();
+   
+  },[search])
  
   return (
     <>

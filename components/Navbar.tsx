@@ -7,6 +7,7 @@ import { useState,useEffect } from 'react'
 import { FaBars, FaTimes } from "react-icons/fa";
 
 import FromModal from "@/components/FromModal";
+import SearchModal from "@/components/SearchModal";
 
 function Navbar() {
 
@@ -44,7 +45,6 @@ function Navbar() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []); 
-
 
   return (
     <>
@@ -93,7 +93,7 @@ function Navbar() {
             </> : (
             <>
               <li className=" px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 link-underline" >
-                <Image src='/assets/icons/search.svg' alt='search' width={28} height={28} className="object-contain" />
+                <SearchModal />
               </li>
               {/* <Image src='/assets/icons/black-heart.svg' alt='heart' width={28} height={28} className="object-contain" /> */}
               <li className=" px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 link-underline" >

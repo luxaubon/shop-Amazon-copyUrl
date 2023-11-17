@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import Image from 'next/image'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState,useCallback } from 'react'
-import { FaBahai,FaRegAddressCard } from 'react-icons/fa';
+import { FaBahai,FaRegAddressCard,FaUserCircle } from 'react-icons/fa';
 import { BsBookmark } from "react-icons/bs";
 
 interface Props {
@@ -110,7 +110,7 @@ function FromModal( {ActionType} : Props) {
                       <div className="flex flex-col">
                         <div className="flex justify-between">
                           <div className="p-3 border border-gray-200 rounded-10">
-                            {/* <FaUserCircle /> */}
+                            <FaUserCircle />
                           </div>
                           <Image src="/assets/icons/x-close.svg" alt="close" width={24} height={24} className="cursor-pointer" onClick={closeModal} />
                         </div>
@@ -141,7 +141,8 @@ function FromModal( {ActionType} : Props) {
                               onChange={(e) => setPassword(e.target.value)}
                             />
                           </div>
-                          <div className="dialog-input_container flex items-center justify-between">
+                          <br/>
+                          <div className=" flex items-center justify-between">
                               <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                                 onClick={() => toggleForm('register')}
                               >Register</a>
@@ -207,8 +208,8 @@ function FromModal( {ActionType} : Props) {
                             onChange={(e) => setRepassword(e.target.value)}
                           />
                         </div>
-
-                        <div className="dialog-input_container flex items-center justify-between">
+                        <br />
+                        <div className="text-right items-center  justify-between">
                             <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                               onClick={() => toggleForm('login')}
                             >Back</a>
@@ -219,7 +220,7 @@ function FromModal( {ActionType} : Props) {
                           onClick={handregister}
                           disabled={isLoading}
                         >
-                          {isLoading ? 'Loading Please Wait...' : 'Login'}
+                          {isLoading ? 'Loading Please Wait...' : 'Login & Register'}
                         </button>
                       </form>
                     )}

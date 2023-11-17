@@ -69,13 +69,20 @@ export async function getProductById(productId: string) {
     }
   }
   
-  export async function getAllProducts() {
+  export async function getAllProducts(search : string) {
     try {
       connectToDB();
-  
-      const products = await Product.find();
-  
-      return products;
+
+      if(search === ""){
+        const products = await Product.find();
+        const plainObject = JSON.parse(JSON.stringify(products));
+        return plainObject;
+      }else{
+        const products = await Product.find({ title: { $regex: new RegExp(search, 'i') } }); 
+        const plainObject = JSON.parse(JSON.stringify(products));
+        return plainObject;
+      }
+
     } catch (error) {
       console.log(error);
     }
