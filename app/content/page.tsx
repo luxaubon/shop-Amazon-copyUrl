@@ -5,6 +5,7 @@ import { useState,useEffect } from "react";
 import React from 'react'
 import ContentCard from '@/components/ContentCard'
 import { useGlobalContext } from "@/app/context/store";
+import useSWR from 'swr';
 
 interface Props {
     id: string
@@ -15,26 +16,30 @@ interface Props {
     longitude: number
 }
 
-  
+
+    const fetchData = async (url: string) => {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    };
+
   function page() {
 
     const [post, setPost] = useState([])
     const {search,setSearch} = useGlobalContext();
 
+    const [perpage, setPerpage] = useState<number>(6);
+    const [totalpage, setTotalpage] = useState<number>(0);
+
+    const { data, error } = useSWR(`https://www.melivecode.com/api/attractions?page=1&per_page=${perpage}&search=${search}`, fetchData);
+
     useEffect(() => {
-        const getPost = async () => {
-            if(search === ''){
-                const res = await fetch(`https://www.melivecode.com/api/attractions`)
-                const post = await res.json()
-                setPost(post)
-            }else{
-                const res = await fetch(`https://www.melivecode.com/api/attractions?search=${search}`)
-                const post = await res.json()
-                setPost(post)
-            }
+        if (data) {
+            setTotalpage(data.total);
+            setPost(data.data);
         }
-        getPost();
-    },[search])
+    }, [data,search,perpage]);
+
 
     return (
         <>
@@ -46,6 +51,13 @@ interface Props {
                     {post?.map((data : Props) => (
                         <ContentCard key={data.id} content={data} />
                     ))}
+                    <div className="w-full flex justify-center">
+                        {perpage < totalpage && (
+                            <>
+                            <button className="btn btn-primary" onClick={() => setPerpage(perpage+6)}>Load More</button>
+                            </>
+                        )}
+                    </div>
                 </div>
             </section>
         </>

@@ -9,6 +9,15 @@ function Footer() {
     { icon: <AiFillYoutube /> },
     { icon: <BiLogoPinterestAlt /> },
   ];
+
+  const links = [
+    {id: 1,link:'/',name: "Home",},
+    {id: 2,link:'/content',name: "Travel Contents",},
+    {id: 3,link:'#',name: "portfolio",},
+    {id: 4,link:'#',name: "experience",},
+    {id: 5,link:'#',name: "contact",},
+  ];
+
   return (
     <>
       <footer className="bg-white">
@@ -56,25 +65,16 @@ function Footer() {
 
             {/* middle div */}
             <div className="flex flex-col gap-8 relative">
-              <p className="text-[22px] font-bold footer-main">Our Classes</p>
+              <p className="text-[22px] font-bold footer-main">Click Redirect</p>
 
               <span className="top-[33px] absolute w-[7rem] h-[4px] bg-[#ff0366]"></span>
 
+              
+              {links.map(({ id, link,name }) => (
               <p className="text-[16px] hover:text-[#ff0366] cursor-pointer text-[#646464] font-medium hover:font-bold">
-                Fitness Classes
+                <a href={`${link}`}> {name}</a>
               </p>
-              <p className="text-[16px] hover:text-[#ff0366] cursor-pointer text-[#646464] font-medium hover:font-bold">
-                Aerobics Classes
-              </p>
-              <p className="text-[16px] hover:text-[#ff0366] cursor-pointer text-[#646464] font-medium hover:font-bold">
-                Power Yoga
-              </p>
-              <p className="text-[16px] hover:text-[#ff0366] cursor-pointer text-[#646464] font-medium hover:font-bold">
-                Learn Machines
-              </p>
-              <p className="text-[16px] hover:text-[#ff0366] cursor-pointer text-[#646464] font-medium hover:font-bold">
-                Full-body Strength
-              </p>
+        ))}
             </div>
 
             {/* right div */}
