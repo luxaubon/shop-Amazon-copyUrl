@@ -25,9 +25,9 @@ function Navbar() {
   const links = [
     {id: 1,link:'/',name: "Home",},
     {id: 2,link:'/content',name: "Travel Contents",},
-    {id: 3,link:'#',name: "portfolio",},
-    {id: 4,link:'#',name: "experience",},
-    {id: 5,link:'#',name: "contact",},
+    // {id: 3,link:'#',name: "portfolio",},
+    // {id: 4,link:'#',name: "experience",},
+    {id: 5,link:'/contact',name: "contact",},
   ];
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,7 +50,7 @@ function Navbar() {
     <>
   
 
-    <div className={`flex justify-between items-center w-full h-20 px-4 text-black bg-white ${isScrolled ? 'fixed' : ''} nav z-10 `}>
+    <div className={`flex justify-between items-center w-full h-20 px-4 text-black bg-white ${isScrolled ? 'fixed' : ''} nav z-50`}>
       <div>
         {/* <h1 className="text-5xl font-signature ml-2"><a className="link-underline hover:transition ease-in-out delay-150 hover:underline hover:decoration-solid" href="">Logo</a></h1> */}
         <h1 className="text-5xl font-signature ml-2">

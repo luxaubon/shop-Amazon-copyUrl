@@ -25,6 +25,7 @@ interface Props {
 
   function page() {
 
+
     const [post, setPost] = useState([])
     const {search,setSearch} = useGlobalContext();
 

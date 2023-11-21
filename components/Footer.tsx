@@ -13,9 +13,9 @@ function Footer() {
   const links = [
     {id: 1,link:'/',name: "Home",},
     {id: 2,link:'/content',name: "Travel Contents",},
-    {id: 3,link:'#',name: "portfolio",},
-    {id: 4,link:'#',name: "experience",},
-    {id: 5,link:'#',name: "contact",},
+    // {id: 3,link:'#',name: "portfolio",},
+    // {id: 4,link:'#',name: "experience",},
+    {id: 5,link:'/contact',name: "contact",},
   ];
 
   return (

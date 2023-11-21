@@ -11,7 +11,6 @@ import { useGlobalContext } from "@/app/context/store";
 
 import {Product} from '@/types/'
 
-
 function Home() {
 
   const {search,setSearch} = useGlobalContext();
@@ -23,7 +22,6 @@ function Home() {
         try {
           const listData: any = await getAllProducts(search);
           setAllProducts(listData);
-          console.log(listData);
         } catch (error) {
           console.log(error);
         }

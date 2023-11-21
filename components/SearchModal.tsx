@@ -20,8 +20,10 @@ function SearchModal() {
     const [text, setText] = useState('');
 
     const handleText = () => {
+         setIsLoading(true);
          setText('')
          setSearch(text);
+         setIsLoading(false);
     }
   return (
     <>
